@@ -58,7 +58,9 @@ ui <- fluidPage(
    ),
    hr(),
    p('The dataset for the analysis is hosted by Kaggle:',
-      a('www.kaggle.com/ludobenistant/hr-analytics', href='https://www.kaggle.com/ludobenistant/hr-analytics'))
+      a('www.kaggle.com/ludobenistant/hr-analytics', href='https://www.kaggle.com/ludobenistant/hr-analytics')),
+   p('The code is placed on ',
+     a('GitHub', href='https://github.com/d-emelyanov/kaggle-hr'))
 )
 
 server <- function(input, output, session) {
@@ -116,7 +118,7 @@ server <- function(input, output, session) {
        ggtitle("Comparing Satisfaction Level across Departments") +
        geom_violin(aes(x=sales, y=last_evaluation), color="grey", fill="red") +
        geom_violin(aes(x=sales, y=satisfaction_level), fill="#ffb300") +
-       geom_boxplot(aes(x=sales, y=satisfaction_level), fill='black', color=alpha('black', 0.1), alpha=0.1) +
+       geom_boxplot(aes(x=sales, y=satisfaction_level), fill='#ffb300', color=alpha('black', 0.1), alpha=0.1) +
        ylim(0,1) +
        ylab('Satisfaction level of employed staff') +
        xlab('Department') +
@@ -137,7 +139,7 @@ server <- function(input, output, session) {
        ggtitle("Comparing Satisfaction Level and Number of Projects") +
        geom_violin(aes(x=number_project, y=last_evaluation), color="grey", fill="red") +
        geom_violin(aes(x=number_project, y=satisfaction_level), fill="#ffb300") +
-       geom_boxplot(aes(x=number_project, y=satisfaction_level), fill='black', color=alpha('black', 0.1), alpha=0.1) +
+       geom_boxplot(aes(x=number_project, y=satisfaction_level), fill='#ffb300', color=alpha('black', 0.1), alpha=0.1) +
        ylim(0,1) +
        ylab('Satisfaction level of employed staff') +
        xlab('Number of projects') +
