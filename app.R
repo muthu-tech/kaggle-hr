@@ -28,7 +28,7 @@ ui <- fluidPage(
       represented by violin diagram overlapped with boxplot charts. 
      '),
    p(strong('*RED AREA on the chart shows last evaluation results.')),
-   p('So one can see the dynamics of satisfaction level comparing both red and orange areas (orange on stands for currentyl employed staff.'),
+   p('So one can see the dynamics of satisfaction level comparing both red and orange areas (orange on stands for currently employed staff.'),
    p(strong('*RED LINE on the chart shows the average level of satisfaction among left employees.')),
    p('This needs to understand a caution level of satisfaction below which the staff are going to leave the company.'),
    hr(),
@@ -49,9 +49,11 @@ ui <- fluidPage(
       # Show a plot of the generated distribution
       mainPanel(
         h3('Exploring satisfaction Level'),
-        plotOutput('plt_satisfaction'),
-        plotOutput('plt_satisfaction_nprojects'),
-        plotOutput('plt_satisfaction_salary')
+        tabsetPanel(
+          tabPanel('Satisfaction VS Department', plotOutput('plt_satisfaction')),
+          tabPanel('Satisfaction VS Number of Projects',plotOutput('plt_satisfaction_nprojects')),
+          tabPanel('Satisfaction VS Salary',plotOutput('plt_satisfaction_salary'))
+        )
       )
    ),
    hr(),
@@ -156,7 +158,7 @@ server <- function(input, output, session) {
        ggtitle("Comparing Satisfaction Level and Salary") +
        geom_violin(aes(x=salary, y=last_evaluation), color="grey", fill="red") +
        geom_violin(aes(x=salary, y=satisfaction_level), fill="#ffb300") +
-       geom_boxplot(aes(x=salary, y=satisfaction_level), fill='black', color=alpha('black', 0.1), alpha=0.1) +
+       geom_boxplot(aes(x=salary, y=satisfaction_level), fill='#ffb300', color=alpha('black', 0.1), alpha=0.1) +
        ylim(0,1) +
        ylab('Satisfaction level of employed staff') +
        xlab('Salary') +
